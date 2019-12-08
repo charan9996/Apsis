@@ -1,0 +1,17 @@
+.background
+{
+    background-color:#eeeeef;
+}
+table
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.alignMessage
+{
+    text-align: center;
+}
+thead>tr>th
+{
+    background-color: #bbbbbb;
+}

@@ -1,0 +1,31 @@
+<section>
+ <div class="row rowfix">
+    <div class="col-md-10">
+      <div class="form-group">
+          <span class="fa fa-times clear-search" *ngIf="showClear"
+          (click)="searchText.value=''; onSearchClick(''); showClear = false;" >
+            </span>
+        <div class="form-group has-feedback" style="position: relative;">
+          <span class="fa fa-search form-control-feedback search-icon"
+          (click)="onSearchClick(searchText.value)"></span>
+          <input class="form-control" placeholder="Search" type="text" #searchText
+          (input)="onSearchTextChange($event.target.value)"
+          style="height: 31px"
+          (keyup.enter)="onSearchClick(searchText.value)">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 p-0">
+          <div class="btn btn-secondary small disabled w-100 filter-btn" *ngIf="appService.userRoleId() === roles.OPM">
+              <span class="fa fa-filter" style="font-size: 18px">
+              </span>
+              <select class="dropdown-item filter-btn" (change)="onFilterChange($event.target.value)">
+                  <option *ngFor="let item of filterOptions; index as i"
+                  style="padding: 2px; margin: 2px; background: white; color: black"
+                    [value]="i">{{item}}
+                  </option>
+                </select>
+              </div>
+     </div>
+  </div>
+</section>

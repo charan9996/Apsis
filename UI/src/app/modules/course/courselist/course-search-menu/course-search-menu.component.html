@@ -1,0 +1,16 @@
+<section>
+    <div class="row" >
+        <div class="col s12">
+  <form >
+      <span class="material-icons  clear-search " *ngIf="showClear" (click)="searchBar.value='';searchText.value='';showClear=false ;onSearchClick();">
+      </span>
+          <mat-form-field class="fullwidth">
+        <input   placeholder="Search" type="text" matInput [formControl]="searchBar" (input)="onSearchTextChange()" #searchText
+         (keyup.enter)="onSearchClick()" [value]="searchValue" autocomplete="off" >
+             </mat-form-field>
+             <i class="fa fa-search search-icon" (click)="onSearchClick()"></i>
+      </form>
+</div>
+</div>
+</section>
+

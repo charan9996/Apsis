@@ -1,0 +1,40 @@
+.search-icon
+{
+  z-index: 1;
+  position: absolute;
+  right: 0px;
+  top: 20px;
+  right: 15px;
+  cursor: pointer;
+  color: darkgray;
+}
+
+.search-icon:hover
+{
+  color: dimgray;
+}
+
+.clear-search
+{
+  position: absolute;
+  left: -15px;
+  top: 0.65em;
+  font-weight: lighter;
+  color: darksalmon;
+  cursor: pointer;
+  -webkit-transition: color 0.2s ease-in-out;
+  -moz-transition: color 0.2s ease-in-out;
+  -o-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
+.clear-search:hover
+{
+  color: orangered;
+}
+.clear-search-hide
+{
+  visibility: hidden;
+}
+.fullwidth{
+  width:100%;
+}

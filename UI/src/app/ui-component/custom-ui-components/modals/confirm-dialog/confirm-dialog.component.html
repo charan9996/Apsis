@@ -1,0 +1,14 @@
+<div class="section" id="section-1">
+  <div class="popup centred" [ngClass]="{'active' : finishedYes === true || finishedNo === true}">
+    <span class="yes-reply centred" [ngClass]="{'active fade-in' : afterYes === true}"></span>
+    <span class="no-reply centred" [ngClass]="{'active fade-in' : afterNo === true}"></span>
+    <h2><small>{{data.title}}</small></h2><hr/>
+    <p>{{data.message}}</p>
+    <div class="bottom-button">
+      <div class="button yes transition" (click)="clicked('yes')"
+        [ngClass]="{'active' : clickedYes === true}">{{data.confirmButtonName}}</div>
+      <div class="button no transition" (click)="clicked('no')"
+      [ngClass]="{'active' : clickedNo === true}">{{data.cancelButtonName}}</div>
+    </div>
+  </div>
+</div>

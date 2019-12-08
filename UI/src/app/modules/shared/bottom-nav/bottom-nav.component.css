@@ -1,0 +1,6 @@
+.page-item.active .page-link{
+    z-index: 1;
+     color: #fff;
+     background-color: rgb(255, 170, 170);
+     border-color: black;
+}

@@ -1,0 +1,182 @@
+<section>
+    <form [formGroup] = "searchFilterForm">
+        <div class = "row rowfix" style="position: relative">
+            <span class = "material-icons clear-search" *ngIf = "showClear" (click) = "onClearSearch()">
+            </span>
+            <mat-form-field class = "col-md-10">
+                <input type="text" placeholder="Search" matInput formControlName="keyword" (input) = "onSearchTextChange($event.target.value)"
+                    (keyup.enter)="onSubmitSearch()" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field class = "col-md-2" *ngIf="appService.userRoleId() === roles.OPM">
+                <mat-select placeholder="Filter" matInput formControlName = "filterIndex" (selectionChange)="onFilterGroupClicked()">
+                    <mat-option *ngFor="let option of filterOptions; index as i" [value]="i">
+                        {{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+</section>
+
+<section>
+    <div class="row rowfix">
+        <!-- <h1 class="col-md-12 display-4 text-secondary text-center" style="min-height: 300px;" *ngIf="requestList.length == 0">NO DATA FOUND</h1> -->
+        <table class="table col-12" style="min-height: 250px">
+            <thead>
+                <tr class="row rowfix bg-info table-header" style="text-align: center">
+                    <th class="col-xl-5 bg-info title-box">
+                        <div class="title-box-left" style="align-self: inherit">
+                            <div class="custom-fa">
+                                <label for="name1">
+                                    <input id="name1" name="name1" type="checkbox"
+                                           [checked]="isAllSelected" (change)="toggleSelectAll($event.target.checked)">
+                                    <span></span>
+                                </label>
+                            </div>
+                            <span class="small">
+                                RequestId
+                                <span class="fa sort-icon" style="vertical-align: middle">
+                                    <i class="sort-asc" (click)="onSortClicked(Sort.YORBIT_ID_ASC)"></i>
+                                    <i class="sort-desc" (click)="onSortClicked(Sort.YORBIT_ID_DESC)"></i>
+
+                                </span>
+                            </span>
+                            &nbsp;
+                            <span>
+                                | Course Name
+                                <span class="fa sort-icon" style="vertical-align: middle">
+                                    <i class="sort-asc" (click)="onSortClicked(Sort.COURSE_NAME_ASC)"></i>
+                                    <i class="sort-desc" (click)="onSortClicked(Sort.COURSE_NAME_DESC)"></i>
+                                </span>
+                            </span>
+                        </div>
+                        <span class="title-box-right">
+                            Learner's Name
+                            <span class="fa sort-icon" style="vertical-align: middle">
+                                <i class="sort-asc" (click)="onSortClicked(Sort.LEARNER_NAME_ASC)"></i>
+                                <i class="sort-desc" (click)="onSortClicked(Sort.LEARNER_NAME_DESC)"></i>
+                            </span>
+                            | MID
+                            <span class="fa sort-icon" style="vertical-align: middle">
+                                <i class="sort-asc" (click)="onSortClicked(Sort.LEARNER_MID_ASC)"></i>
+                                <i class="sort-desc" (click)="onSortClicked(Sort.LEARNER_MID_DESC)"></i>
+                            </span>
+                        </span>
+                    </th>
+                    <th class="col-4 col-sm-4 col-lg-2 col-xl-1 text-center title-box bg-info justify-content-center">
+                        Academy&nbsp;
+                        <span class="fa sort-icon" style="vertical-align: middle">
+                            <i class="sort-asc" (click)="onSortClicked(Sort.ACADEMY_NAME_ASC)"></i>
+                            <i class="sort-desc" (click)="onSortClicked(Sort.ACADEMY_NAME_DESC)"></i>
+                        </span>
+                    </th>
+                    <th class="col-4 col-sm-4 col-lg-2 col-xl-2 title-box bg-info justify-content-center">
+                        Submission Date&nbsp;
+                        <span class="fa sort-icon" style="vertical-align: middle">
+                            <i class="sort-asc" (click)="onSortClicked(Sort.SUBMISSION_DATE_ASC)"></i>
+                            <i class="sort-desc" (click)="onSortClicked(Sort.SUBMISSION_DATE_DESC)"></i>
+                        </span>
+                    </th>
+                    <th class="col-4 col-sm-4 col-lg-2 col-xl-2 title-box bg-info justify-content-center">
+                        Assignment Due Date&nbsp;
+                        <span class="fa sort-icon" style="vertical-align: middle">
+                            <i class="sort-asc" (click)="onSortClicked(Sort.EVALUATION_DATE_ASC)"></i>
+                            <i class="sort-desc" (click)="onSortClicked(Sort.EVALUATION_DATE_DESC)"></i>
+                        </span>
+                    </th>
+                    <th class="col-6 col-sm-6 col-lg-6 col-xl-1 title-box bg-info justify-content-center">
+                        -
+                    </th>
+                    <th class="col-6 col-sm-6 col-lg-6 col-xl-1 title-box bg-info justify-content-center">
+                        <!-- <i class="small">Upload | Download</i> -->
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="box-shadow: 2px 8px 10px -10px rgba(255, 0, 0, 0.6); font-size: 16px"
+                    *ngFor="let request of requestList; index as i" (click)="selectedRequest(request.requestId)"
+                    class="row rowfix">
+                    <td class="col-12 col-sm-12 col-lg-6 col-xl-5 title-box small"
+                        [ngClass]="{ 'request-primary-2' : i % 2 == 0 }">
+                        <div class="title-box-left">
+                            <div class="custom-fa" (click)="$event.stopPropagation()">
+                                <label for="{{i}}">
+                                    <input id="{{i}}" name="{{i}}" type="checkbox" [checked]="checkboxes[i]"
+                                           (change)="selectedCheckBox(i, $event.target.checked)">
+                                    <span></span>
+                                </label>
+                            </div>
+                            <span class="text-truncate">
+                                <span class="pl-2 pr-2" matTooltip="{{request.yorbitRequestId}}">{{request.yorbitRequestId}} | </span>
+                                <span matTooltip="{{request.courseName}}">{{request.courseName}}</span>
+                            </span>
+                        </div>
+                        <span class="title-box-right">
+                            <span class="" style="vertical-align:text-top">{{request.name}} | {{request.mid}} </span>
+                        </span>
+                    </td>
+                    <td class="col-4 col-sm-4 col-lg-2 col-xl-1 title-box request-info-header-font p-1 text-truncate"
+                        [ngClass]="{ 'request-primary-2' : i % 2 == 0 }">
+                        <span matTooltip="{{request.academy}}">{{request.academy}}</span>
+                    </td>
+                    <td class="col-4 col-sm-4 col-lg-2 col-xl-2 title-box request-info-header-font p-1"
+                        [ngClass]="{ 'request-primary-2' : i % 2 == 0 }">
+                        {{((request.submissionDate == null) ? ('-') : (request.submissionDate | date: 'MM/dd/yyyy'))}}
+                    </td>
+                    <td class="col-4 col-sm-4 col-lg-2 col-xl-2 title-box request-info-header-font p-1"
+                        [ngClass]="{ 'request-primary-2' : i % 2 == 0 }">
+                        {{request.assignmentDueDate | date: 'MM/dd/yyyy'}}
+                    </td>
+                    <td class="col-6 col-sm-6 col-lg-6 col-xl-1 title-box request-info-header-font p-1"
+                        [ngClass]="{ 'request-primary-2' : i % 2 == 0 }" (click)="$event.stopPropagation()">
+                        <span *ngIf=" appService.userRoleId() === roles.OPM ">
+                            <input matInput [min]="startDate" [matDatepicker]="picker" style="height:0;width:0;visibility:hidden"
+                                   (dateChange)="updateAssignmentDueDate(request.requestId,$event)">
+                            <mat-datepicker #picker></mat-datepicker>
+                            <i class="fa fa-calendar" *ngIf="request.resultId == (resultCodes.notclear | lowercase)||request.resultId == (resultCodes.error | lowercase)
+                            ||request.submissionDate==null"
+                               style="cursor: pointer;font-size: 16px" aria-hidden="true" (click)="picker.open();$event.stopPropagation()"></i>
+                            <i class="fa fa-calendar" *ngIf="request.resultId == (resultCodes.cleared | lowercase)||request.resultId == (resultCodes.evaluate | lowercase)"
+                               (click)="$event.stopPropagation()" style="font-size: 16px;color:lightgrey;cursor:no-drop;" aria-hidden="true"></i>
+                        </span>
+                        &nbsp;&nbsp;
+
+                        <span *ngIf="appService.userRoleId() === roles.OPM ">
+                            <span *ngIf="((request.resultId === (resultCodes.cleared | lowercase)||request.resultId ===(resultCodes.notclear | lowercase)) && !request.isPublished); else disabledPublish;">
+                                <a matTooltip="Publish Result" (click)="PublishResultClicked(request.requestId);$event.stopPropagation()">
+                                    <i class="fa fa-bullhorn" *ngIf="request.resultId === (resultCodes.cleared | lowercase)||request.resultId ===(resultCodes.notclear | lowercase)"
+                                       style="cursor: pointer;font-size: 16px"></i>
+                                </a>
+                            </span>
+                        </span>
+                        <ng-template #disabledPublish>
+                            <i class="fa fa-bullhorn" (click)="$event.stopPropagation()" style="cursor: no-drop;font-size: 16px;color:lightgrey"></i>
+                        </ng-template>
+                    </td>
+                    <td class="col-6 col-sm-6 col-lg-6 col-xl-1 text-center title-box title-box p-1"
+                        [ngClass]="{ 'request-primary-2' : i % 2 == 0 }">
+                        <span *ngIf="request.resultId != (resultCodes.evaluate | lowercase) && appService.userRoleId() === roles.OPM">
+                            <i class="fa fa-cloud-upload title-box-left pr-1" (click)="openDialog(request);$event.stopPropagation()" style="font-size: 24px"></i>
+                        </span>
+                        <span *ngIf="request.resultId == (resultCodes.evaluate | lowercase) && appService.userRoleId() === roles.OPM" class="uploadDisable">
+                            <i class="fa fa-cloud-upload title-box-left pr-1" (click)="$event.stopPropagation()" style="font-size: 24px"></i>
+                        </span>
+                        <span [ngClass]="{ 'downloadDisable' : (request.submissionDate == null) }">
+                            <i class="fa fa-cloud-download title-box-left pl-1" (click)="(request.submissionDate != null) ? downloadClicked(request.requestId) : true; $event.stopPropagation()" style="font-size: 24px"></i>
+                        </span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary" (click)="downloadAllClicked()" [disabled]="noneSelected()">Download Selected</button>
+        &nbsp;&nbsp;
+        <button *ngIf="appService.userRoleId() === roles.OPM" type="button" class="btn btn-primary mr-auto" (click)="PublishResultAllClicked()" [disabled]="noneSelected()">Publish Result</button>
+        &nbsp;&nbsp;
+        <button *ngIf="appService.userRoleId() === roles.OPM" type="button" class="btn btn-outline-primary" (click)="downloadReport()">Export Request Report</button>
+    </div>
+</section>
+
+<mat-paginator [length] = "records" [pageSize] = "searchFilter.PageSize" [pageSizeOptions] = "pageSizeOptions" [pageIndex] = "pageNumber"
+    (page)="pageEvent = $event; onPageSwitch()">
+</mat-paginator>

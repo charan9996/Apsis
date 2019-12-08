@@ -1,0 +1,43 @@
+.background {
+    height: 150px;
+    background: rgb(255, 220, 220);
+    margin-top:20px;
+    text-align: center;
+    /* -webkit-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75); */
+}
+/* .fa
+{
+    font-size:25px;
+    color: red;
+    margin-top: 10px;
+} */
+
+.alignMessage
+{
+    text-align: center;
+}
+.pTop
+{
+    padding-top: 25px;
+    letter-spacing: 1px;
+}
+.courseName
+{
+    letter-spacing: 3px;
+    font-size: 20px;
+}
+.pSpacing
+{
+    letter-spacing: 1px;
+}
+.table-header, .table-header>th
+{
+  font-weight: 500 !important;
+  font-size: 16px;
+  color: darkslategrey;
+  align-content: center;
+  border-bottom: 1px solid #016D6D;
+}
+    

@@ -1,0 +1,66 @@
+select.filter-btn
+{
+  font-size: 14px;
+  color: white;
+  width: 85%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 2px;
+  height: 100%;
+  background: slategray;
+}
+select.filter-btn:hover
+{
+  color: white;
+  background: darkslategray;
+}
+.filter-btn
+{
+  position:  relative;
+  padding: 4px;
+  text-align: left;
+  font-size: 14px;
+  height: 30px
+}
+.search-icon
+{
+  z-index: 1;
+  position: absolute;
+  right: 0px;
+  top: 7px;
+  right: 5px;
+  cursor: pointer;
+  color: darkgray;
+  -webkit-transition: color 0.2s ease-in-out;
+  -moz-transition: color 0.2s ease-in-out;
+  -o-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
+
+.search-icon:hover
+{
+  color: dimgray;
+}
+
+.clear-search
+{
+  position: absolute;
+  left: -1px;
+  top: 0.45em;
+  font-weight: lighter;
+  color: darksalmon;
+  cursor: pointer;
+  -webkit-transition: color 0.2s ease-in-out;
+  -moz-transition: color 0.2s ease-in-out;
+  -o-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
+.clear-search:hover
+{
+  color: orangered;
+}
+.clear-search-hide
+{
+  visibility: hidden;
+}

@@ -1,0 +1,100 @@
+<section>
+  <app-course-search-menu (search)="onSubmitSearch($event)"
+  [searchValue]="searchedValued" [searchMessage]="searchFinishMessage"></app-course-search-menu>
+</section>
+
+<section>
+  <div class=" row ml-0 mr-0 rowfix">
+      <!-- <h1 class="col-md-12 display-4 text-secondary text-center" style="min-height: 300px;" *ngIf="courses.length == 0">NO DATA FOUND</h1> -->
+    <table class="table col-xs-12 ">
+      <thead>
+        <tr class="row bg-info ml-md-0 mr-md-0 table-header rowfix" style="text-align: center">
+          <th class="col-4 col-sm-4 col-lg-2 col-xl-2 title-box bg-info-2" style="font-weight:500;align-self: inherit; border-bottom: 1px solid #016D6D;">
+            Yorbit Course Id&nbsp;
+            <span class="fa sort-icon" style="vertical-align: middle">
+            <i class="sort-asc" (click)="onSortClicked(Sort.YORBIT_COURSE_ID_ASC)"></i>
+            <i class="sort-desc" (click)="onSortClicked(Sort.YORBIT_COURSE_ID_DESC)"></i>
+            </span>
+          </th>
+          <th class="col-6 col-sm-6 col-lg-3 col-xl-3 title-box bg-info-1" style="font-weight:500; border-bottom: 1px solid #016D6D;">
+            Course Name&nbsp;
+            <span class="fa sort-icon" style="vertical-align: middle">
+            <i class="sort-asc" (click)="onSortClicked(Sort.COURSE_NAME_ASC)"></i>
+            <i class="sort-desc" (click)="onSortClicked(Sort.COURSE_NAME_DESC)"></i>
+            </span>
+          </th>
+          <th class="col-4 col-sm-4 col-lg-2 col-xl-1 title-box bg-info-2" style="font-weight:500; border-bottom: 1px solid #016D6D;">
+            Academy&nbsp;
+            <span class="fa sort-icon" style="vertical-align: middle">
+            <i class="sort-asc" (click)="onSortClicked(Sort.ACADEMY_NAME_ASC)"></i>
+            <i class="sort-desc" (click)="onSortClicked(Sort.ACADEMY_NAME_DESC)"></i>
+            </span>
+          </th>
+          <th class="col-3 col-sm-3 col-lg-2 col-xl-2 title-box bg-info-1" style="font-weight:500; border-bottom: 1px solid #016D6D;">
+            Batch Type&nbsp;
+            <span class="fa sort-icon" style="vertical-align: middle">
+              <i class="sort-asc" (click)="onSortClicked(Sort.BATCH_TYPE_ASC)"></i>
+              <i class="sort-desc" (click)="onSortClicked(Sort.BATCH_TYPE_DESC)"></i>
+            </span>
+          </th>
+          <th class="col-3 col-sm-3 col-lg-2 col-xl-2 title-box bg-info-2" style="font-weight:500; border-bottom: 1px solid #016D6D;">
+            Course Type&nbsp;
+            <span class="fa sort-icon" style="vertical-align: middle">
+            <i class="sort-asc" (click)="onSortClicked(Sort.COURSE_TYPE_ASC)"></i>
+            <i class="sort-desc" (click)="onSortClicked(Sort.COURSE_TYPE_DESC)"></i>
+            </span>
+          </th>
+          <th class="col-4 col-sm-4 col-lg-2 col-xl-2 title-box bg-info-2" style="font-weight:500; border-bottom: 1px solid #016D6D;">
+            Problem Assigned&nbsp;
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="box-shadow: 2px 8px 10px -10px rgba(255, 0, 0, 0.6); font-size: 16px;margin-bottom: 12px" *ngFor="let course of courses; index as i;"
+          (click)="selectedCourse(course.id)" class="row ml-md-0 mr-md-0 request-row rowfix">
+          <td class="col-4 col-sm-4 col-lg-2 col-xl-2 request-info-header-font text-center d-flex p-1 text-truncate"
+            [ngClass]="{ 'request-primary-2' : i % 2 == 0 }"
+            matTooltip="{{course.yorbitCourseId}}">
+            {{course.yorbitCourseId}}
+          </td>
+          <td class="col-6 col-sm-6 col-lg-3 col-xl-3 request-info-header-font text-center d-flex p-1 text-truncate"
+            [ngClass]="{ 'request-primary-2' : i % 2 == 0 }"
+            matTooltip="{{course.courseName}}">
+            {{course.courseName}}
+          </td>
+          <td class="col-4 col-sm-4 col-lg-2 col-xl-1 request-info-header-font text-center d-flex p-1 text-truncate"
+            [ngClass]="{ 'request-primary-2' : i % 2 == 0 }"
+            matTooltip="{{course.academy}}">
+            {{course.academy}}
+          </td>
+          <td class="col-3 col-sm-3 col-lg-2 col-xl-2 request-info-header-font text-center d-flex p-1 text-truncate"
+            [ngClass]="{ 'request-primary-2' : i % 2 == 0 }"
+            matTooltip="{{course.batchType}}">
+            {{course.batchType}}
+          </td>
+          <td class="col-3 col-sm-3 col-lg-2 col-xl-2 request-info-header-font text-center d-flex p-1 text-truncate"
+            [ngClass]="{ 'request-primary-2' : i % 2 == 0 }"
+            matTooltip="{{course.courseType}}">
+            {{course.courseType}}
+          </td>
+          <td class="col-4 col-sm-4 col-lg-2 col-xl-2 request-info-header-font text-center d-flex p-1 text-truncate"
+            [ngClass]="{ 'request-primary-2' : i % 2 == 0 }" 
+            *ngIf = "course.assignmentFileId == '00000000-0000-0000-0000-000000000000'">
+            No
+          </td>
+          <td class="col-4 col-sm-4 col-lg-2 col-xl-2 request-info-header-font text-center d-flex p-1 text-truncate"
+            [ngClass]="{ 'request-primary-2' : i % 2 == 0 }" 
+            *ngIf = "course.assignmentFileId != '00000000-0000-0000-0000-000000000000'">
+            Yes
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+    <mat-paginator [length]="records" #paginator
+    [pageSize]="searchFilter.PageSize" [pageSizeOptions]="pageSizeOptions" (page)=" pageEvent = $event;getData() " [pageIndex]="pageNumber">
+</mat-paginator>
+</section>

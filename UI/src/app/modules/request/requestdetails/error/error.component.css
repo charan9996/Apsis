@@ -1,0 +1,48 @@
+.btnColor{
+    background-color: rgb(255, 170, 170);
+    color: black;
+    border-color: rgba(254, 69, 69, 0.8);
+    font-weight: 400;
+}
+
+.btn-primary:hover{
+    background: rgba(254, 69, 69, 0.8);
+    border-color: black;
+    font-weight: 550;
+}
+.btn-primary:active{
+    background: white !important; 
+    color: rgba(254, 69, 69, 0.8) !important;
+    box-shadow: 1px 1px 2px rgba(254, 69, 69, 0.40) !important;
+}
+
+.btn-primary:focus{
+    box-shadow: 1px 1px 2px rgba(254, 69, 69, 0.40) !important;
+    border-color: rgba(254, 69, 69, 0.8) !important;
+}
+.example-full-width {
+    width: 100%;
+  }
+
+  .file-upload{
+    cursor: pointer;
+    width: 100%;
+  }
+  input:hover{
+      cursor: pointer;
+  }
+
+  textarea.mat-input-element{
+      height: 150px;
+      background-color: white;
+ 
+  }
+
+  .changePointer:hover{
+    cursor: not-allowed;
+}
+
+.background
+{
+    background-color:#eeeeef;
+}

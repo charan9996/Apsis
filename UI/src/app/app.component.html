@@ -1,0 +1,15 @@
+<div id="wrapper">
+  <!-- <app-spinner *ngIf="flyerService.showSpinner"></app-spinner> -->
+  <header id="header">
+    <app-header></app-header>
+  </header>
+  <main id="content">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+  <footer id="footer">
+    <app-footer></app-footer>
+  </footer>
+  <app-toast></app-toast>
+</div>

@@ -1,0 +1,32 @@
+<br>
+<div class="row" >
+  <div class="col-lg-4" *ngFor="let items of requestList" >
+   <div class="card" *ngIf="items.resultId != (resultCodes.Project_Cleared | lowercase)">
+     <div  (click)="selectedRequest(items.id)">
+      <div class="DisplayInfo" style="text-align:center"><label  style="font-weight: 600">{{items.yorbitCourseId}}</label></div>
+      <div class="DisplayInfo" style="text-align:center"><label  style="font-weight: 600">{{items.courseName}}</label></div>
+      <div class="DisplayInfo" style="text-align:center"> Request Id: <label  style="font-weight: 600">{{items.yorbitRequestId}}</label></div>
+      <div class="DisplayInfo" style="text-align:center">Due Date: <label style="font-weight: 600">{{items.assignmentDueDate | date:  'MM/dd/yyyy'}}</label></div>
+      <div class="DisplayInfo" style="text-align:center">Status: <label style="font-weight: 600" *ngIf="items.resultId==(resultCodes.evaluate | lowercase)">Result awaited</label>
+        <label style="font-weight: 600" *ngIf="items.resultId==(resultCodes.cleared| lowercase)">Project cleared</label>
+        <label style="font-weight: 600" *ngIf="items.resultId==(resultCodes.notclear | lowercase)">Project not cleared</label>
+        <label style="font-weight: 600" *ngIf="items.resultId==(resultCodes.error | lowercase)">Error</label>
+       <label style="font-weight: 600" *ngIf="items.resultId=='00000000-0000-0000-0000-000000000000'">Yet to submit project</label>
+      </div>
+      </div>
+      <div class="container">
+           <button class="btn button-container" style="align-content:left;width:50%;font-size:12px;" data-toggle="tooltip" data-placement="top"
+           title="{{items.filePath == null ? 'Problem statement not assigned.' : 'Download Problem/Project Statement'}}"
+                    (click)="download(items.filePath)" [disabled]="items.filePath == null"><span class="fa fa-download"></span>Problem Statement</button>
+
+           <button class="btn button-container" style="align-content:end;width:50%;font-size:12px;" data-toggle="tooltip" data-placement="top"
+           title="{{items.resultId == (resultCodes.evaluate  | lowercase) ? 'Previous Assignment solution is yet to be evaluated.' : 'Upload Problem/Project Solution'}}"
+                    (click)="openDialog(items)" id="btn Upload the problem statement" [disabled]="(items.resultId == (resultCodes.evaluate  | lowercase) || (items.attempts >=3))"><span class="fa fa-upload"></span>Upload Assignment</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

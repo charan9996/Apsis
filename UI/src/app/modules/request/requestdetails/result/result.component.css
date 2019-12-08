@@ -1,0 +1,57 @@
+.background
+{
+    background-color:#eeeeef;
+}
+.error
+{
+    color: red;
+    font-size: 12px;
+}
+.errorDiv
+{
+    height: 20px;
+}
+textarea
+{
+    min-height: 100px;
+}
+.checkboxRow
+{
+    padding-top: 25px;
+}
+.alignCheckbox1
+{
+    text-align: right;
+}
+.alignCheckbox2
+{
+    text-align: left;
+}
+.radio
+{
+    margin-right: 5px;
+}
+@media only screen and (max-width: 576px) {
+    .alignCheckbox1
+    {
+        text-align: center;
+    }
+    .alignCheckbox2
+    {
+        text-align: center;
+    }
+}
+.disableBackground
+{
+    cursor: no-drop;
+}
+.disclaimer
+{
+    text-align: right;
+    font-size: 11px;
+}
+.btn:disabled
+{
+    opacity: 0.35;
+    cursor: no-drop;
+}

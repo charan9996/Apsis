@@ -1,0 +1,75 @@
+<section>
+  <div class="background" [ngClass]="{'disableBackground': requestDetailsModel?.resultId != resultCodes.evaluate.toLowerCase()}">
+    <form [formGroup]="ResultDetailsForm">
+      <div class="row rowfix checkboxRow">
+        <div class="form-group form col-xs-6 col-sm-6 col-md-6 alignCheckbox1">
+          <input type="radio" class="radio" name="resultId" id="clear" formControlName="resultId" value="{{resultCodes.cleared.toLowerCase()}}">
+          <label for="clear"><b> Cleared </b></label>
+        </div>
+        <div class="form-group form col-xs-6 col-sm-6 col-md-6 alignCheckbox2">
+          <input type="radio" class="radio" name="resultId" id="notclear" formControlName="resultId" value="{{resultCodes.notclear.toLowerCase()}}">
+          <label for="notclear"><b> Not Cleared </b></label>
+        </div>
+      </div>
+      <div class="row rowfix">
+        <div class="form-group col-xs-3 col-sm-3 col-md-3">
+          <label for="comments">Comments:</label>
+          <div class="disclaimer text-left text-muted" style="font-size: 10px">
+              (optional)
+          </div>
+        </div>
+        <div class="form-group col-xs-9 col-sm-9 col-md-9">
+          <textarea class="form-control" name="comments" placeholder="Comments" formControlName="comments" id="comments" maxlength="500"></textarea>
+          <div class="errorDiv">
+            <div class="disclaimer">
+              Only 500 Characters Allowed.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row rowfix">
+        <div class="form-group col-xs-3 col-sm-3 col-md-3">
+          <label for="score">Score:</label>
+          <div class="disclaimer text-left text-muted" style="font-size: 10px">
+              (optional)
+          </div>
+        </div>
+        <div class="form-group col-xs-9 col-sm-9 col-md-6">
+          <input type="text" class="form-control" maxlength="8" id="score" name="score" formControlName="score" placeholder="Score">
+          <div class="errorDiv">
+            <div *ngIf="ResultDetailsForm.invalid && ResultDetailsForm.get('score').errors">
+              <div *ngIf="ResultDetailsForm.get('score').errors.pattern" class="error">
+                Score can only be number upto 5 places before and 2 after decimal, like: xxxxx.xx
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row rowfix" [hidden]="(requestDetailsModel?.resultId != resultCodes.evaluate.toLowerCase() || appService.userRoleId() === roles.Learner || requestDetailsModel && appService.userMid() === requestDetailsModel.learnerMid)">
+        <div class="form-group col-xs-3 col-sm-3 col-md-3">
+          <label for="scoreCard">Score Card:</label>
+          <div class="disclaimer text-left text-muted" style="font-size: 10px">
+              (optional)
+          </div>
+        </div>
+        <div class="form-group col-xs-9 col-sm-9 col-md-9">
+          <input type="file" id="scoreCard" name="scoreCard" formControlName="scoreCard" (change)="onFileChange($event)">
+          <div class="errorDiv">
+            <div *ngIf="ResultDetailsForm.invalid && ResultDetailsForm.get('scoreCard').errors">
+              <div *ngIf="ResultDetailsForm.get('scoreCard').errors.pattern" class="error">
+                Only .zip Files
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="row rowfix" align="center">
+      <div class="form-group col-xs-12 col-sm-12 col-md-12">
+        <button class="btn btn-primary" [hidden]="(requestDetailsModel?.resultId != resultCodes.evaluate.toLowerCase() || appService.userRoleId() === roles.Learner || requestDetailsModel && appService.userMid() === requestDetailsModel.learnerMid)"
+          [disabled]="(ResultDetailsForm.invalid) || ( appService.userRoleId() === roles.Learner || (requestDetailsModel && appService.userMid() === requestDetailsModel.learnerMid))"
+          (click)="submitDetails()">Submit</button>
+      </div>
+    </div>
+  </div>
+</section>

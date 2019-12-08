@@ -1,0 +1,71 @@
+.background {
+    height: 220px;
+    background: rgb(255, 220, 220);
+    margin-top:20px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.background1 {
+    height: 220px;
+    background: rgb(255, 220, 220);
+    margin-top:20px;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.pTop
+{
+    /* padding-top: 25px; */
+    letter-spacing: 1px;
+}
+.Name
+{
+    letter-spacing: 1px;
+    font-size: 20px;
+}
+.pSpacing
+{
+    letter-spacing: 1px;
+}
+.alignCenter
+{
+    padding-top: 20px;
+}
+.circleRed
+{
+    color:red;
+}
+.circleGreen
+{
+    color:green;
+}
+.circleYellow
+{
+    color: #f1f125;
+}
+.textCenter
+{
+    text-align: center;
+}
+.status
+{
+    font-size: 20px;
+}
+button
+{
+    font-size: 16px;
+}
+.btn:disabled
+{
+    opacity: 0.35;
+    cursor: no-drop;
+}
+
+.tabBackground{
+    background-color:#eeeeef;
+}

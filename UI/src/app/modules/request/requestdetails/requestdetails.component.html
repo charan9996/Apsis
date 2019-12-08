@@ -1,0 +1,60 @@
+<section>
+  <button class="btn btn-outline-secondary" (click)="backToList()">❮ Back</button>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-lg-3 col-md-5 col-sm-12 mb-xs-1">
+        <div class="background1">
+          <p class="pTop">{{requestDetails?.learnerMid}}</p>
+          <p class="Name">{{requestDetails?.learnerName}}</p>
+          <p class="pSpacing">{{requestDetails?.location}}</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-lg-7 col-md-7 col-sm-12 mb-xs-1">
+        <div class="background">
+          <p class="pTop"><i>(Request Id: {{requestDetails?.yorbitRequestId}})</i></p>
+          <p class="pScpacing">{{requestDetails?.yorbitCourseId}}</p>
+          <p class="Name">{{requestDetails?.courseName}}</p>
+          <p class="pSpacing">{{requestDetails?.academy}}</p>
+          <p class="pSpacing" *ngIf = "requestDetails?.resultId == (resultCodes.cleared| lowercase)">(Course Completed)</p>
+          <p class="pSpacing" *ngIf = "requestDetails?.resultId != (resultCodes.cleared| lowercase)">(Course In-Progess)</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-lg-2 col-sm-12 align-self-center textCenter">
+        <p class="alignCenter" *ngIf="loading == false"><i class="fa fa-circle" [ngClass]="{ 'circleYellow' : (requestDetails?.resultId.toLowerCase() == resultCodes.evaluate.toLowerCase()) ,
+                      'circleRed' : (requestDetails?.resultId.toLowerCase() == resultCodes.error.toLowerCase()) || (requestDetails?.resultId.toLowerCase() == resultCodes.notclear.toLowerCase()),
+                      'circleGreen' : (requestDetails?.resultId.toLowerCase() == resultCodes.cleared.toLowerCase())}" style="font-size:50px"></i></p>
+        <div class="status" *ngIf="loading == false"><b>{{requestDetails?.resultName == null ? 'Yet To Submit Project' : requestDetails?.resultName}}</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+<br/>
+<section>
+  <div class="row">
+    <div class="col-lg-3 col-sm-12">
+      <div class="row rowfix">
+        <div class="col-sm-6 col-lg-12 form-group" align="center">
+          <button type="button" class="btn btn-primary" [disabled]="downloadAssignmentDisable(requestDetails?.assignmentSolutionUrl)"
+            (click)="downloadAssignment(requestDetails?.assignmentSolutionUrl)">Download Assignment <i class="fa fa-download"></i></button>
+        </div>
+        <div class="col-sm-6 col-lg-12 form-group" align="center">
+          <button class="btn btn-primary" type="button" [disabled]="downloadScoreCardDisable((requestDetails?.scoreCardUrl))" (click)="downloadScoreCard(requestDetails?.scoreCardUrl)">Download Score Card <i class="fa fa-download"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 col-sm-12 tabBackground">
+      <mat-tab-group>
+        <mat-tab label="Result">
+          <app-result [requestDetailsModel]="requestDetails" (resultDetailsEvent)="resultDetails($event)">
+          </app-result>
+        </mat-tab>
+        <mat-tab label="Errors">
+          <app-error [requestDetailsModel]="requestDetails" [isLearner]="isLearner" (outputRequest)="postErrorAsync($event)" [message]="message"></app-error>
+        </mat-tab>
+        <mat-tab label="Log">
+          <app-log [requestDetailsModel]="requestDetails"></app-log>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</section>

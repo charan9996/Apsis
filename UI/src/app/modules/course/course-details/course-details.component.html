@@ -1,0 +1,72 @@
+<section>
+    <button class="btn btn-outline-secondary" (click)="Back()">❮ Back</button>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-3 col-sm-3 mb-xs-1">
+        <div class="background">
+          <p class="pTop">{{courseDetails?.yorbitCourseId}}</p>
+          <p class="courseName">{{courseDetails?.courseName}}</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-9 col-sm-9">
+        <div class="background">
+          <p class="pTop">Academy: {{courseDetails?.academy}}</p>
+          <p class="pSpacing">Batch Type: {{courseDetails?.batchType}}</p>
+          <p class="pSpacing">Course Type: {{courseDetails?.courseType}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br/>
+<section>
+  <div class="row">
+    <div class="col-md-12 col-lg-3 align-self-center">
+        <div class="row rowfix">
+          <div class="col-md-6 col-lg-12 form-group" align="center">
+            <app-upload-assignment (fileChanged)="onFileChange($event)" class="uploadAssignment"></app-upload-assignment>
+          </div>
+          <div class="col-md-6 col-lg-12 form-group" align="center">
+              <button type="button" class="btn btn-primary" [disabled]="disableDownload" (click) = "downloadCourseAssignment(courseDetails?.courseProblemStatementUrl)">
+                <i class="fa fa-download"></i> Download Problem Statement</button>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-9">
+      <table class="table table-striped">
+        <thead>
+          <tr class="table-header">
+            <th class="bg-info">MID</th>
+            <th class="bg-info">Name</th>
+            <th class="bg-info">Location</th>
+            <!-- <th class="bg-info"></th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let evaluator of courseDetails?.evaluators; let i = index">
+            <td>{{evaluator?.mid}}</td>
+            <td>{{evaluator?.name}}</td>
+            <td>{{evaluator?.location}}</td>
+            <!-- <i class="fa fa-close" (click)="deleteEvaluator(evaluator?.id)"></i> -->
+          </tr>
+          <tr *ngIf="courseDetails?.evaluators.length == 0">
+            <td colspan="3" class="alignMessage">No Data Available</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+ </section>
+<br/>
+<section>
+  <div class="row" hidden>
+    <div class="col-12 col-md-6 col-lg-7">
+    </div>
+    <div class="col-7 col-md-4 col-lg-3">
+      <input type="text" class="form-control" placeholder="MID" (input)="onValueChange($event.target.value)" #inputMid>
+    </div>
+    <div class="col-4 col-md-2 col-md-2">
+      <button type="button" (click)="addEvaluator(inputMid)" [disabled]="enableAddBtn()">Add <i class="fa fa-plus" style="font-size:18px;color:green"></i></button>
+    </div>
+  </div>
+</section>

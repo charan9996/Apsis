@@ -1,0 +1,37 @@
+
+.border-light:hover{
+	cursor: pointer;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+	color: rgba(255,255,255,.5);
+	text-shadow: 0px 0px;
+	letter-spacing: 2px;
+  font-weight: 300 !important;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+a.nav-link.active
+{
+  text-shadow: 0px 0px rgba(255, 0, 0, 0.60) !important;
+}
+a.nav-link:hover
+{
+  color: rgba(255,255,255,.7) !important;
+}
+
+.logout-btn
+{
+  font-size: 18px;
+  outline: 0;
+}
+.logout-btn:hover, .logout-btn:active
+{
+  color: darkgray !important;
+}
+.logout-btn:focus
+{
+  color: lightgray !important;
+}

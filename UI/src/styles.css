@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+html,
+body {
+  height: 100%;
+  margin: 0
+}
+
+#wrapper {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+#wrapper #header {
+  flex: 0 1 auto;
+  z-index: 1;
+}
+
+#wrapper #content {
+  flex: 1 1 auto;
+  padding: 10px 10px 20px 10px;
+}
+
+#wrapper #footer{
+  flex: 0 1 20px;
+  z-index: 1;
+}
+
+.rowfix{
+  margin-left: 0;
+  margin-right: 0;
+}
+

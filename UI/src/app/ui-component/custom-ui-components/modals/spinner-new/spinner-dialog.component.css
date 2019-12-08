@@ -1,0 +1,10 @@
+::ng-deep .mat-dialog-container{
+  box-shadow: 0px 0px #000000;
+  background: transparent;
+}
+
+/* ::ng-deep .cdk-overlay-container
+{
+  z-index: 2000;
+} */
+

@@ -1,0 +1,31 @@
+<section>
+  <div class="background">
+    <div class="row rowfix">
+      <div class="col-md-10 offset-md-1">
+          <table class="table table-striped">
+              <thead>
+                <tr class="table-header">
+                  <th>Submission Date</th>
+                  <th>Evaluation Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let attempts of requestDetailsModel?.attemptsLog; let i = index">
+                  <td>{{attempts?.submissionDate | date:'MMM d, y h:mm a'}}</td>
+                  <td class="alignMessage" *ngIf="attempts?.evaluationDate == '0001-01-01T00:00:00'">-</td>
+                  <td *ngIf="attempts?.evaluationDate != '0001-01-01T00:00:00'">{{attempts?.evaluationDate | date:'MMM d, y h:mm a'}}</td>
+                  <td>{{attempts?.resultName}}</td>
+                </tr>
+                <tr *ngIf="requestDetailsModel?.attemptsLog.length == 0">
+                  <td colspan="3" class="alignMessage">No Attempts Registered</td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+

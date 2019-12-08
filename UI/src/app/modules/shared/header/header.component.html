@@ -1,0 +1,80 @@
+<header class="bg-dark">
+  <nav class="navbar navbar-expand-sm navbar-dark scrolling-navbar ">
+    <div class="container-fluid justify-content-center">
+      <span class="navbar-brand flex-fill w-100 flex-nowrap">
+          <a class="navbar-brand" style="padding: 1px 4px 1px 4px; letter-spacing: 2px;"
+            [routerLink]="['']" target="_self" tabindex="-1">APSIS</a>
+          <span class="border-secondary border-left p-1 pl-2 pr-2 mr-2 ml-2 font-weight-light"
+            [ngSwitch]="appService.userRoleId()">
+              <span *ngSwitchCase="roles.OPM">Learning OPM</span>
+              <span *ngSwitchCase="roles.Evaluator">Evaluator</span>
+              <span *ngSwitchCase="roles.Learner">Learner</span>
+              <span *ngSwitchDefault> - </span>
+          </span>
+      </span>
+        <ul class="navbar-nav flex-fill w-100 justify-content-center">
+          <li class="nav-item">
+            <span *ngIf="appService.userRoleId() === roles.OPM || appService.userRoleId() === roles.Evaluator">
+              <a class="nav-link"
+                [routerLink]="['request/list']"
+                [routerLinkActive]="['active']">
+                  <strong>Requests</strong>
+                </a>
+            </span>
+          </li>
+          <li *ngIf="appService.userRoleId() === roles.OPM" class="nav-item">
+            <a [routerLink]="['course']" class="nav-link"
+            [routerLinkActive]="['active']">
+              <strong>Courses</strong>
+          </a>
+          </li>
+          <li class="nav-item" *ngIf="appService.userRoleId() !== roles.OPM">
+              <a class="nav-link" [routerLink]="['request/my-requests']"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{exact: true}">
+                <strong>My Requests</strong>
+              </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav nav-flex-icons flex-fill w-100 justify-content-end" >
+          <!-- <span class="text-muted border-secondary border-right p-1 pl-2 pr-2 mr-2 ml-2 mt-auto mb-auto"
+            [ngSwitch]="appService.userRoleId()">
+              <span *ngSwitchCase="roles.OPM">Learning OPM</span>
+              <span *ngSwitchCase="roles.Evaluator">Evaluator</span>
+              <span *ngSwitchCase="roles.Learner">Learner</span>
+              <span *ngSwitchDefault> - </span>
+          </span> -->
+          <span *ngIf="appService.userRoleId() === roles.OPM; else normalUserIcon">
+          <a class="mr-2 nav-link border border-light rounded" [matMenuTriggerFor]="menu">
+            <i class="fa fa-user"></i> {{appService.user?.name}}
+          </a>
+          <mat-menu #menu="matMenu" disableOptionCentering yPosition="below" overlapTrigger="false">
+              <a href="https://orchard8.blob.core.windows.net/templates/Apsis%20Input%20files.zip 
+              "><button mat-menu-item (click)="downloadEmptyTemplate()" class="text-primary mat-menu-item" 
+                style="border-bottom: 1px dotted black">
+                  <small>Download <b>Empty Template</b> for Input</small>
+                </button></a>
+            <button mat-menu-item (click)="openCourseDialog()" class="text-primary mat-menu-item">
+              <small>Upload <b>Yorbit Course</b> Input</small>
+            </button>
+            <button mat-menu-item (click)="openRequestDialog()" class="text-danger mat-menu-item">
+              <small>Upload <b>Yorbit Request</b> Input</small>
+            </button>
+          </mat-menu>
+          </span>
+          <!--Normal user icon-->
+          <ng-template #normalUserIcon>
+            <a class="mr-2 nav-link border border-secondary rounded">
+              <i class="fa fa-user"></i> {{appService.user?.name}}
+            </a>
+          </ng-template>
+          <!--logout button-->
+          <button *ngIf="appService.user"
+              class="btn btn-outline-secondary text-muted logout-btn"
+              (click)="logoutUser()">
+              <small class="p-1"><i class="fa fa-power-off"></i></small>
+          </button>
+      </ul>
+    </div>
+  </nav>
+</header>

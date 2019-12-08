@@ -1,0 +1,109 @@
+.title-box
+{
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  padding: 0px 1px 1px 1px !important;
+}
+  .request-info-header-font {
+    font-size: 80%;
+    padding: 0.5rem 0.25rem 0.5rem 0.25rem !important;
+    align-self: center;
+    text-align: center;
+    border-right: 1px solid rgba(0, 1, 0, 0.05);
+  }
+ .title-box
+ {
+  font-weight:500;
+  padding: 0.3em 0 0.3em 0;
+  color: darkslategrey;
+ }
+
+  row{
+    margin-bottom: 0px;
+    margin-right: 0px !important;
+    vertical-align: middle;
+  }
+
+  tr
+  {
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+  tbody > tr:hover
+  {
+    outline: 2px solid rgba(0, 0, 0, 0.25);
+  }
+  .button {
+    background-color: #ddd;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+  }
+
+  .nav-pills{
+    padding-top: 10px;
+
+  }
+
+  .fa.sort-icon
+  {
+    position: relative;
+    height: 20px;
+    width: 10px;
+    align-content: center;
+    font-size: 14px;
+    padding: 0 1px 0 1px;
+    color:darkslategray;
+  }
+  span.sort-icon>i.sort-asc::before {
+    font-style: normal;
+    content: "\f0de";
+    position: absolute;
+    top: 0;
+    color: teal;
+  }
+  span.sort-icon>i.sort-desc::before {
+    font-style: normal;
+    content: "\f0dd";
+    position: absolute;
+    bottom: 0;
+    color: teal;
+  }
+
+  .fa.sort-icon i.sort-asc:hover::before , .fa.sort-icon i.sort-desc:hover::before
+  {
+    color: darkslategray;
+  }
+
+  .request-primary-1
+  {
+    background: rgb(255, 170, 170);
+  }
+  .request-primary-2
+  {
+    background: rgb(255, 220, 220);
+  }
+  .request-secondary-1
+  {
+    background: rgb(125, 255, 160);
+  }
+  .request-secondary-2
+  {
+    background: rgb(200, 255, 180);
+  }
+
+.head-info-2{
+  background: rgb(0, 152, 219);
+}
+
+.head-info-1{
+  background: rgb(0, 152, 219);
+}
